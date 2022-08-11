@@ -2,14 +2,14 @@ import math
 
 class Spherical:
 
-    def __init__(self,radius):
-        self.radius = radius
+    def __init__(self,r):
+        self.radius = r
 
     def changeR(self,Radius):
         self.radius = Radius
 
     def findVolume(self):
-        return round(4/3,16) * round(math.pi,15) * self.radius * self.radius * self.radius
+        return  4/3 * math.pi * pow(self.radius,3)
 
     def findArea(self):
         return 4 * math.pi * self.radius * self.radius
