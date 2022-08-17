@@ -17,6 +17,9 @@ class Stack:
 
     def size(self):
         return len(self.items)
+
+    def reverse(self):
+        self.items.reverse()
     
     def __str__(self):
         return "".join(self.items)
@@ -38,6 +41,9 @@ class Queue:
 
     def isEmpty(self):
         return self.size() == 0
+
+    def reverse(self):
+        self.items.reverse()
     
     def __str__(self):
         return "".join(self.items)
@@ -71,10 +77,13 @@ nor_boom = 0
 cnt = 0
 
 for data in nor:
-    print(f'{nor_s} {nor_s.size()}')
     if nor_s.size() < 2:
+        if nor_s.size() == 1 and data == nor_s.top():
+            cnt = 2
+        else:
+            cnt = 0
         nor_s.push(data)
-        cnt += 1
+            
     elif cnt == 2 and not mir_boom_q.isEmpty():
         cnt = 0
         front = mir_boom_q.pop()
@@ -89,8 +98,11 @@ for data in nor:
             nor_s.push(th)
         nor_s.push(data)
     else:
+        if data == nor_s.top():
+            cnt = 2
+        else:
+            cnt = 0
         nor_s.push(data)
-        cnt += 1
         th, sc, fr = nor_s.pop(), nor_s.pop(), nor_s.pop()
         if fr == sc == th:
             nor_boom += 1
@@ -101,4 +113,22 @@ for data in nor:
 
 print("NORMAL :")
 print(f'{nor_s.size()}')
-print(nor_s)
+nor_s.reverse()
+if nor_s.size() == 0:
+    print("Empty")
+else:
+    print(nor_s)
+print(f'{nor_boom} Explosive(s) ! ! ! (NORMAL)')
+if fail > 0:
+    print(f'Failed Interrupted {fail} Bomb(s)')
+
+print("------------MIRROR------------")
+
+print(": RORRIM")
+print(f'{mir_s.size()}')
+mir_s.reverse()
+if mir_s.size() == 0:
+    print("ytpmE")
+else:
+    print(mir_s)
+print(f'(RORRIM) ! ! ! (s)evisolpxE {mir_boom}')

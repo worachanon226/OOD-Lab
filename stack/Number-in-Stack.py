@@ -24,21 +24,27 @@ class ManageStack():
         if self.isEmpty():
             print("-1")
         else:
+            ls = []
             for x in self.items:
-                if int(x) < int(i):
-                    while x in self.items:
-                        self.items.pop(self.items.index(x))
-                    print(f'Delete = {x} Because {x} is less than {i}')
+                if int(x) < int(i) and x not in ls:
+                    ls.append(x)
+            ls.reverse()
+            for x in ls:
+                self.items.pop(self.items.index(x))
+                print(f'Delete = {x} Because {x} is less than {i}')
 
     def moreThanDelete(self,i):
         if self.isEmpty():
             print("-1")
         else:
+            ls = []
             for x in self.items:
-                if int(x) > int(i):
-                    while x in self.items:
-                        self.items.pop(self.items.index(x))
-                    print(f'Delete = {x} Because {x} is more than {i}')
+                if int(x) > int(i) and x not in ls:
+                    ls.append(x)
+            ls.reverse()
+            for x in ls:
+                self.items.pop(self.items.index(x))
+                print(f'Delete = {x} Because {x} is more than {i}')
         
     
     def isEmpty(self):
