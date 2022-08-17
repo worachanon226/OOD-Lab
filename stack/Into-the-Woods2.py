@@ -20,6 +20,9 @@ class Stack:
 
     def size(self):
         return len(self.items)
+
+    def clear(self):
+        self.items.clear()
     
     def __str__(self):
         return str(self.items)
@@ -27,26 +30,31 @@ class Stack:
 
 inp = input("Enter Input : ").split(",")
 
-s = Stack()
+s1 = Stack()
+s2 = Stack()
 
 for i in range(len(inp)):
     if len(inp[i]) == 1:
         if inp[i]=="B":
-            print(s.size())
+            print(s2.size())
         if inp[i]=="S":
             tmp = []
-            while not s.isEmpty():
-                top = int(s.pop())
+            s2.clear()
+            while not s1.isEmpty():
+                top = int(s1.pop())
                 if top % 2 == 0:
-                    top -= 1
+                    tmp.append(top-1)
                 else:
-                    top += 2
-                tmp.append(top)
+                    tmp.append(top+2)
             tmp.reverse()
-            for i in range(len(tmp)):
-                n = tmp[i]
-                while not s.isEmpty() and int(n) >= int(s.top()):
-                    s.pop()
-                s.push(n)
+            for n in tmp:
+                s1.push(n)
+                while not s2.isEmpty() and int(n) >= int(s2.top()):
+                    s2.pop()
+                s2.push(n)
     else:
-        s.push(n)
+        n = inp[i].split(" ")[1]
+        s1.push(n)
+        while not s2.isEmpty() and int(n) >= int(s2.top()):
+            s2.pop()
+        s2.push(n)
