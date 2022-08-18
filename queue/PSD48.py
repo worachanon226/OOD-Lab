@@ -6,9 +6,7 @@ class Queue:
         self.items.append(i)
     
     def pop(self):
-        front = self.items[0]
-        self.items = self.items[1:]
-        return front
+        return self.items.pop(0)
 
     def size(self):
         return len(self.items)
