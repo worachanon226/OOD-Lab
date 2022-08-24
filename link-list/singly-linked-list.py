@@ -24,52 +24,58 @@ class LinkedList:
         if self.head == None:
             self.head = NewNode
             return 
-        last = self.head
-        while(last.next):
-            last = last.next
-        last.next = NewNode
+        cur = self.head
+        while cur.next is not None:
+            cur = cur.next
+        cur.next = NewNode
 
     def addHead(self, item):
         NewNode = Node(item)
-        if self.head == None:
+        if self.isEmpty():
             self.head = NewNode
             return 
         NewNode.next = self.head
         self.head = NewNode
 
     def search(self, item):
-        tmp = self.head
+        cur = self.head
         for i in range(self.size()):
-            if tmp.value == item:
+            if cur.value == item:
                 return "Found"
-            tmp = tmp.next
+            cur = cur.next
         return "Not Found"
 
     def index(self, item):
-        tmp = self.head
+        cur = self.head
         for i in range(self.size()):
-            if tmp.value == item:
+            if cur.value == item:
                 return i
-            tmp = tmp.next
+            cur = cur.next
         return -1
 
     def size(self):
         cnt = 0
-        tmp = self.head
-        while(tmp != None):
+        cur = self.head
+        while(cur != None):
             cnt += 1
-            tmp = tmp.next
+            cur = cur.next
         return cnt
         
     def pop(self, pos):
-        if pos < 0 or pos >=self.size():
+        if pos < 0 or pos >= self.size():
             return "Out of Range"
+        elif self.size() == 1:
+            self.head = None
+            return "Success"
         else:
-            tmp = self.head
+            cur = self.head
             for i in range(pos-1):
-                tmp = tmp.next
-            tmp.next = tmp.next.next
-            return "Success"                
+                cur = cur.next
+            if cur.next is not None:
+                cur.next = cur.next.next
+            else:
+                cur.next = None
+            return "Success"
         
 L = LinkedList()
 inp = input('Enter Input : ').split(',')
