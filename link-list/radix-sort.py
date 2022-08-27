@@ -80,6 +80,13 @@ class Radixsort:
                 idx = self.get_idx(int(num), i)
                 lqs[idx].enqueue(num)
             for k in range(10):
+                if not lqs[k].isEmpty():
+                    temp_l = []
+                    while not lqs[k].isEmpty():
+                        temp_l.append(lqs[k].dequeue())
+                    temp_l.sort()
+                    for kk in temp_l:
+                        lqs[k].enqueue(kk)
                 print(f'{k} : {lqs[k]}')
             print("------------------------------------------------------------")
             for j in range(10):
