@@ -4,7 +4,6 @@ class Node:
         self.next = None
 
 class LinkedQueue:
-    rnd = 0
     def __init__(self):
         self.head = None
     
@@ -58,7 +57,6 @@ class LinkedQueue:
 
 class Radixsort:
     ch = 0
-
     def setCh(self):
         self.ch = 1
 
@@ -66,10 +64,10 @@ class Radixsort:
         lq = LinkedQueue()
         for i in l:
             lq.enqueue(i)
-        maxbits = self.max_digit(l)
-        self.rnd = maxbits
         lqs = [LinkedQueue() for _ in range(10)]
-        for i in range(1,maxbits+2):
+        i = 0
+        while 1:
+            i += 1
             print(f'Round : {i}')
             pos, neg = [], []
             while not lq.isEmpty():
@@ -94,27 +92,22 @@ class Radixsort:
                         lqs[k].enqueue(kk)
                 print(f'{k} : {lqs[k]}')
             print("------------------------------------------------------------")
+            ch = 0
+            for j in range(1,10):
+                if not lqs[j].isEmpty():
+                    ch = 1
             for j in range(10):
                 while not lqs[j].isEmpty():
                     lq.enqueue(lqs[j].dequeue())
+            if not ch:
+                self.rnd = i-1
+                return lq
         return lq
 
     def get_idx(self,n,d):
         for _ in range(d-1):
             n //= 10
         return n % 10
-    
-    def max_digit(self,l):
-        mx = 0
-        for i in l:
-            if self.ch == 1:
-                if int(i) > 0:
-                    mx = max(mx,len(i))
-                else:
-                    mx = max(mx,len(i)-3)
-            else:
-                mx = max(mx,len(i)-1)
-        return mx
     
     def get_round(self):
         return self.rnd
