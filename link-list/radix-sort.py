@@ -57,6 +57,11 @@ class LinkedQueue:
         cur.next = newNode
 
 class Radixsort:
+    ch = 0
+
+    def setCh(self):
+        self.ch = 1
+
     def sort(self,l):
         lq = LinkedQueue()
         for i in l:
@@ -102,10 +107,13 @@ class Radixsort:
     def max_digit(self,l):
         mx = 0
         for i in l:
-            if int(i) > 0:
-                mx = max(mx,len(i))
-            # else:
-            #     mx = max(mx,len(i)-2)
+            if self.ch == 1:
+                if int(i) > 0:
+                    mx = max(mx,len(i))
+                else:
+                    mx = max(mx,len(i)-3)
+            else:
+                mx = max(mx,len(i)-1)
         return mx
     
     def get_round(self):
@@ -115,6 +123,8 @@ rs = Radixsort()
 l = LinkedQueue()
 inp = input("Enter Input : ").split(" ")
 for data in inp:
+    if int(data) >= 0:
+        rs.setCh()
     l.enqueue(data)
 print("------------------------------------------------------------")
 lq = rs.sort(inp)
