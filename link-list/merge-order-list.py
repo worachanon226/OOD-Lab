@@ -30,22 +30,22 @@ def mergeOrderesList(p,q):
         q = q.next
     
     while p or q:
-        if p:
-            if q is None or p.data < q.data:
-                cur.next = p
-                p = p.next
-            else:
-                cur.next = q
-                q = q.next
-            cur = cur.next
-        if q:
-            if p is None or q.data < p.data:
-                cur.next = q
-                q = q.next
-            else:
-                cur.next = p
-                p = p.next
-            cur = cur.next
+        if p is not None and q is not None and int(p.data) <= int(q.data):
+            cur.next = p
+            p = p.next
+        
+        elif p is not None and q is not None and int(p.data) > int(q.data):
+            cur.next = q
+            q = q.next
+
+        elif p is None and q is not None:
+            cur.next = q
+            q = q.next
+        elif p is not None and q is None:
+            cur.next = p
+            p = p.next
+
+        cur = cur.next
     return head
 
 inp,L1, L2 = input("Enter 2 Lists : ").split(" "), [], []
