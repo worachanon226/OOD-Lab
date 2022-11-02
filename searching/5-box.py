@@ -10,7 +10,7 @@ def serach(arr,size):
 
 inp = input('Enter Input : ').split('/')
 arr, k = list(map(int, inp[0].split())), int(inp[1])
-i = arr[0]
+i = max(arr)
 while(i):
     bx = serach(arr,i)
     if bx <= k:
