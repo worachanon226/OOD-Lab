@@ -38,7 +38,7 @@ class BST:
         if node:
             mx = self.getHeight(node.right, h+1,mx)
             mx = self.getHeight(node.left, h+1,mx)
-            mx = max(h,mx)
+            mx = max(h ,mx)
         return mx
 
 T = BST()

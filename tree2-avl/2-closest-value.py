@@ -16,7 +16,7 @@ class BST:
         self.ans = 0
         self.value = v
 
-    def getans(self):
+    def closestValue(self):
         return self.ans
 
     def insert(self, data):
@@ -59,4 +59,4 @@ for i in fir:
     root = T.insert(i)
     T.printTree(root)
     print("--------------------------------------------------")
-print(f'Closest value of {inp[1]} : {T.getans()}')
+print(f'Closest value of {inp[1]} : {T.closestValue()}')

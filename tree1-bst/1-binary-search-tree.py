@@ -11,28 +11,14 @@ class BST:
     def __init__(self):
         self.root = None
 
-    def insert(self, data):
-        if not self.root:
-            self.root = Node(data)
-            return self.root
+    def insert(self,root,data):
+        if not root:
+            return Node(data)
+        elif data < root.data:
+            root.left = self.insert(root.left, data)
         else:
-            cur = self.root
-            while True:
-                if data < cur.data:
-                    if cur.left:
-                        cur = cur.left
-                    else:
-                        cur.left = Node(data)
-                        break
-                elif data > cur.data:
-                    if cur.right:
-                        cur = cur.right
-                    else:
-                        cur.right = Node(data)
-                        break
-                else:
-                    break
-            return self.root
+            root.right = self.insert(root.right, data)
+        return root
 
     def printTree(self, node, level = 0):
         if node != None:
@@ -42,7 +28,7 @@ class BST:
 
 T = BST()
 inp = [int(i) for i in input('Enter Input : ').split()]
-root = ""
-for i in inp:
-    root = T.insert(i)
+root = T.insert(None,inp[0])
+for i in range(1,len(inp)):
+    root = T.insert(root,inp[i])
 T.printTree(root)
